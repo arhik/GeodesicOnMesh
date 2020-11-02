@@ -1,0 +1,4 @@
+name = "GeodesicOnMesh"
+uuid = "25393ddd-92a7-49ca-8e6a-e0b0bf44933d"
+authors = ["arhik "]
+version = "0.1.0"
