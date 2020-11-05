@@ -1,15 +1,5 @@
 # Vertex
 
-mutable struct Vertex
-    he::Union{HalfEdge, Nothing}
-	position # Vector3D
-	phi::Float64
-	index::Int
-  function Vertex()
-    new(nothing, [], -1.0, -1)
-  end
-end
-
 function isIsolated(v::Vertex)
 	v.he == nothing
 end
@@ -20,8 +10,8 @@ function dualArea(v::Vertex)
 	firstrun = true
 	while(firstrun || he != v.he)
 		firstrun = false
-		area += area(he.face)
-		he = h.twin.next
+		area += faceArea(he.face)
+		he = he.twin.next
 	end
 	return area/3
 end

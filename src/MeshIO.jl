@@ -38,39 +38,27 @@ function readObj(path::String)
     return meshData
 end
             
-# Dummy Vertex 
-# TODO remove
+function indexElements(mesh::Mesh)
+    index = 1
+    for v in mesh.vertices
+        v.index = index
+        index += 1
+    end
 
+    index = 1
+    for e in mesh.edges
+        e.index = index
+        index += 1
+    end
 
-# mutable struct Vertex
-	# he pointer
-	# position 3D vector
-	# phi distance
-	# index among total number of vertices
-	# isIsolated() const 
-	# dualArea() const # returns area of barycentric dual cell associated with the vertex
-	# onBoundary const
-#	he # can be simple vector or itertools::PeekIter
-#	position # this is clear 3D vector
-#	phi::Float64
-#	int::UInt64
-#	function Vertex()
-#		new(PeekIter(HalfEdge[]), nothing, -1.0, 0)
-#	end
-# end
-
-function isIsolated(v::Vertex)
-	# use peek strategy here.
-	if peek(v.he) != nothing
-		return false
-	end
-	return true
+    index = 1
+    for f in mesh.faces
+        f.index = index
+        index += 1
+    end
 end
 
 
-using IterTools: PeekIter, peekiter
-
-# WiP
 function buildMesh(meshdata::MeshData)
     mesh = Mesh()
     edgeCount = Dict{Tuple{Int, Int}, Int}()
@@ -228,6 +216,7 @@ function buildMesh(meshdata::MeshData)
             push!(mesh.boundaries, boundaryCycle...)
         end
     end
+    indexElements(mesh)
     return mesh
 end
 

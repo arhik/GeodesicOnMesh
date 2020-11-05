@@ -2,3 +2,8 @@ name = "GeodesicOnMesh"
 uuid = "25393ddd-92a7-49ca-8e6a-e0b0bf44933d"
 authors = ["arhik "]
 version = "0.1.0"
+
+[deps]
+IterTools = "c8e1da08-722c-5040-9ed9-7db0dc04731e"
+LinearAlgebra = "37e2e46d-f89d-539d-b4ee-838fcccc9c8e"
+SparseArrays = "2f01184e-e22b-5df5-ae63-d93ebab69eaf"
